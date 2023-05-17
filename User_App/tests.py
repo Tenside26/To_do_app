@@ -34,8 +34,10 @@ class RegisterPageTest(TestCase):
 
     def test_register_page_form_rendering(self):
         form_data = {'username': 'something1',
+                     'password1': "asd123zxc",
+                     'password2': "asd123zxc",
                      'first_name': 'something2',
                      'last_name': 'something3',
-                     'email': 'something4'}
+                     'email': 'something4@gmail.com'}
         form = UserRegisterForm(data=form_data)
         self.assertTrue(form.is_valid())
