@@ -1,5 +1,5 @@
 
-from django.urls import resolve
+from django.urls import resolve, reverse
 from django.test import TestCase
 from User_App.views import login_page, register_page
 from .forms import UserLoginForm, UserRegisterForm
@@ -21,6 +21,10 @@ class LoginPageTest(TestCase):
         form = UserLoginForm(data=form_data)
         self.assertTrue(form.is_valid())
 
+    def test_hyperlink_to_register_page(self):
+        response = self.client.get("/")
+        self.assertContains(response, '<a href="%s"><button>Click</button></a>' % reverse("register"), html=True)
+
 
 class RegisterPageTest(TestCase):
 
@@ -41,3 +45,7 @@ class RegisterPageTest(TestCase):
                      'email': 'something4@gmail.com'}
         form = UserRegisterForm(data=form_data)
         self.assertTrue(form.is_valid())
+
+    def test_hyperlink_to_login_page(self):
+        response = self.client.get("/register")
+        self.assertContains(response, '<a href="%s"><button>Click</button></a>' % reverse("login"), html=True)
