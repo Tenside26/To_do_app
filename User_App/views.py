@@ -9,3 +9,11 @@ def login_page(request):
     form = UserLoginForm
 
     return render(request, template, {"form": form})
+
+
+def register_page(request):
+
+    template = "register.html"
+    form = UserLoginForm
+
+    return render(request, template, {"form": form})
