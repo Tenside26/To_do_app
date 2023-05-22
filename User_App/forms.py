@@ -15,7 +15,7 @@ class UserLoginForm(forms.Form):
             user = authenticate(username=username, password=password)
             if not user:
                 raise forms.ValidationError("Username does not exists")
-            if not user.checkpassword(password):
+            if not user.check_password(password):
                 raise forms.ValidationError("Wrong Password")
 
 
@@ -38,7 +38,7 @@ class UserRegisterForm(UserCreationForm):
 
     def clean(self):
         form_data = self.cleaned_data
-        if form_data['password'] != form_data['password_repeat']:
-            self.errors["password"] = ["Password do not match"]
-            del form_data['password']
+        if form_data['password1'] != form_data['password2']:
+            self.errors["password1"] = ["Password do not match"]
+            del form_data['password1']
         return form_data
