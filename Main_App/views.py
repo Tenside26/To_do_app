@@ -1,3 +1,9 @@
+
 from django.shortcuts import render
 
-# Create your views here.
+
+def main_page(request):
+
+    template = "main.html"
+
+    return render(request, template)
