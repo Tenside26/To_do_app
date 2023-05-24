@@ -5,9 +5,10 @@
     <title>Register Page</title>
   </head>
   <body>
-    <form>
+    <form method="POST">
       {% csrf_token %}
       {{ form }}
+      <button type="submit">Register</button>
     </form>
     <p>Want To Go Back To Login Page? <a href="{% url 'login' %}"><button>Click</button></a></p>
   </body>
