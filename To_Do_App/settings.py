@@ -17,6 +17,7 @@ import dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 USER_APP_TEMPLATES = os.path.join(BASE_DIR, "User_App", "templates")
+MAIN_APP_TEMPLATES = os.path.join(BASE_DIR, "Main_App", "templates")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -62,7 +63,7 @@ ROOT_URLCONF = 'To_Do_App.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [USER_APP_TEMPLATES],
+        'DIRS': [USER_APP_TEMPLATES, MAIN_APP_TEMPLATES],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
