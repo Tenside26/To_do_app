@@ -29,23 +29,28 @@ class LoginPageTest(TestCase):
         form = UserLoginForm(data=self.existing_form_data)
         self.assertTrue(form.is_valid())
 
-    def test_login_page_form_password_validation_with_wrong_password(self):
+    def test_login_page_form_password_validation_with_wrong_password(self): # Rewrite This Test
         form = UserLoginForm(data=self.nonexistent_form_data)
         self.assertFalse(form.is_valid())
+
+    def test_login_page_form_logging_with_nonexistent_user(self):
+        form = UserLoginForm(data=self.nonexistent_form_data)
+        self.assertFalse(form.is_valid())
+        self.assertFormError(form, field=None, errors=["Username does not exists"])
 
     def test_hyperlink_to_register_page(self):
         response = self.client.get("/")
         self.assertContains(response, '<a href="%s"><button>Click</button></a>' % reverse("register"), html=True)
 
-
+    # Add Password Validation Test (Check If Passwords Match)
 class RegisterPageTest(TestCase):
 
     def setUp(self):
         User.objects.create_user(username='something1',
-                                 password='asxd123zxc',
+                                 password='asd123zxc',
                                  email='something3@gmail.com')
 
-        self.existing_form_data = {'username': 'something11',
+        self.existing_form_data = {'username': 'something1',
                                    'password1': "asd123zxc",
                                    'password2': "asd123zxc",
                                    'first_name': 'something22',
@@ -70,6 +75,7 @@ class RegisterPageTest(TestCase):
     def test_register_page_form_email_validation_with_existing_email(self):
         form = UserRegisterForm(data=self.existing_form_data)
         self.assertFalse(form.is_valid())
+        self.assertFormError(form, field="email", errors=["Email already in use"])
 
     def test_register_page_form_email_validation_with_nonexistent_email(self):
         form = UserRegisterForm(data=self.nonexistent_form_data)
@@ -78,6 +84,7 @@ class RegisterPageTest(TestCase):
     def test_register_page_form_username_validation_with_existing_username(self):
         form = UserRegisterForm(data=self.existing_form_data)
         self.assertFalse(form.is_valid())
+        self.assertFormError(form, field="username", errors=["Username already taken"])
 
     def test_register_page_form_username_validation_with_nonexistent_username(self):
         form = UserRegisterForm(data=self.nonexistent_form_data)
