@@ -10,9 +10,9 @@ class Task(models.Model):
     completed = models.BooleanField(default=False)
 
 
-class UserTaskList(models.Model):
+class TaskList(models.Model):
 
-    owner =  models.OneToOneField(User, on_delete=models.CASCADE, related_name="task_list_owner")
+    owner = models.OneToOneField(User, on_delete=models.CASCADE, related_name="task_list_owner")
     task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name="task")
 
 
