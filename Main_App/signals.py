@@ -9,3 +9,4 @@ def create_user_task_list(sender, instance, created, **kwargs):
 
     if created:
         TaskList.objects.create(owner=instance)
+
