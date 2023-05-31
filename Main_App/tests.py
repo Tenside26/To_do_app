@@ -1,3 +1,9 @@
 from django.test import TestCase
 
-# Create your tests here.
+
+class TaskListTest(TestCase):
+    pass
+
+
+class TaskTest(TestCase):
+    pass

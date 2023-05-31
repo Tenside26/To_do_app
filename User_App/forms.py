@@ -25,20 +25,20 @@ class UserRegisterForm(UserCreationForm):
         fields = ["username", "password1", "password2", "first_name", "last_name", "email"]
 
     def clean_email(self):
-        email = self.cleaned_data['email']
+        email = self.cleaned_data.get('email')
         if User.objects.filter(email=email).exists():
             raise forms.ValidationError("Email already in use")
         return email
 
     def clean_username(self):
-        username = self.cleaned_data['username']
+        username = self.cleaned_data.get('username')
         if User.objects.filter(username=username).exists():
             raise forms.ValidationError("Username already taken")
         return username
 
     def clean(self):
         form_data = self.cleaned_data
-        if form_data['password1'] != form_data['password2']:
-            self.errors["password1"] = ["Password do not match"]
+        if form_data.get('password1') != form_data.get('password2'):
+            self.errors.get["password1"] = ["Password do not match"]
             del form_data['password1']
         return form_data
