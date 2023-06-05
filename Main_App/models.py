@@ -15,4 +15,7 @@ class Task(models.Model):
     completed = models.BooleanField(default=False)
     task_list = models.ForeignKey(TaskList, on_delete=models.CASCADE, related_name="task", blank=True, null=True)
 
+    def __str__(self):
+        return self.title
+
 

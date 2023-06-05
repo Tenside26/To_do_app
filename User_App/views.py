@@ -16,7 +16,7 @@ def login_page(request):
 
         if user is not None:
             login(request, user)
-            # Add Redirect Later
+            return redirect("main")
 
     return render(request, template, {"form": form})
 
