@@ -10,7 +10,7 @@ django-faker==0.2
 exceptiongroup==1.1.1
 factory-boy==3.2.1
 fake-factory==9999.9.9
-Faker==18.9.0
+Faker==18.10.1
 h11==0.14.0
 idna==3.4
 inflection==0.5.1

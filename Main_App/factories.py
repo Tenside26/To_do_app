@@ -11,7 +11,7 @@ class UserFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = User
 
-    username = fake.username()
+    username = fake.word()
     password = fake.password()
     first_name = fake.first_name()
     last_name = fake.last_name()
